@@ -6,6 +6,7 @@ var hasPaused = false;
 var interval;
 var canvasWidth;
 var canvasHeight;
+var isDead = false;
 
 class Shape {
     constructor(x, y, width, height, color, speed) {
@@ -78,15 +79,19 @@ var rightKey, leftKey, upKey, downKey;
 $("html").keydown(function (e) {
     if (e.key == "Right" || e.key == "ArrowRight") {
         rightKey = true;
+        e.preventDefault();
     }
     if (e.key == "Up" || e.key == "ArrowUp") {
         upKey = true;
+        e.preventDefault();
     }
     if (e.key == "Left" || e.key == "ArrowLeft") {
         leftKey = true;
+        e.preventDefault();
     }
     if (e.key == "Down" || e.key == "ArrowDown") {
         downKey = true
+        e.preventDefault();
     }
 });
 
@@ -107,11 +112,19 @@ $("html").keyup(function (e) {
 
 $(function () {
     interval = setInterval(drawImage, timeUpdate);
+    loadLeaders();
+    loadPersonalBest();
+    getBallColor();
 });
 
 function gameOver() {
+    isDead = true;
     clearInterval(interval);
+    loadLeaders();
+    loadPersonalBest();
     alert("Game Over! You lasted " + time / 1000 + " seconds!");
+    if(!hasPaused)
+        updateScore();
 }
 
 function handlePlayerMove(player, dtime) {
@@ -215,6 +228,8 @@ function drawImage() {
 
 
 function pauseGame() {
+    if(isDead)
+        return;
     var buttonPause = document.getElementById("pauseStart");
     if (buttonPause.innerHTML == "Pause") {
         hasPaused = true;
@@ -230,9 +245,56 @@ function pauseGame() {
 function resetGame() {
     var buttonReset = document.getElementById("reset");
     time = 0;
+    isDead = false;
     lastSpawn = -5000;
     hasPaused = false;
     rects = [];
     circle.x = 200;
     circle.y = 400;
+    upKey = rightKey = leftKey = downKey = false;
+    clearInterval(interval);
+    interval = setInterval(drawImage, timeUpdate);
 }
+
+function loadLeaders(){
+    $.get("getLeaders.php", function(data, status){
+        if(status == "success"){
+            var scores = JSON.parse(data);
+            var data = "<tr><th>Username</th><th>Time</th></tr>";
+            for(var i = 0; i < scores.length; i++)
+            {
+                data += "<tr><td>"+scores[i].username+"</td><td>"+scores[i].score+"</td></tr>"; 
+            }
+            $("#leaders").html(data);
+       }
+    });
+}
+
+function loadPersonalBest(){
+    $.get("getPersonalBest.php", function(data, status){
+        if(status == "success"){
+            var scores = JSON.parse(data);
+            var data = "<tr><th>Username</th><th>Time</th></tr>";
+            for(var i = 0; i < scores.length; i++)
+            {
+                data += "<tr><td>"+scores[i].username+"</td><td>"+scores[i].score+"</td></tr>"; 
+            }
+            $("#personalBest").html(data);
+       }
+    });
+}
+
+function updateScore(){
+    $.post("insertScore.php", {score: time/1000}, function(data, status){console.log(data, status);});
+}
+
+function getBallColor(){
+    $.get("getColor.php", function(data, status){
+        if(status == "success"){
+            var color = JSON.parse(data);
+            if(color[0].color != null)
+                circle.color = color[0].color;
+        }
+    });
+}
+

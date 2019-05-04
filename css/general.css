@@ -1,6 +1,19 @@
 body {
-    background-color: #505160;
+    background-color: #262228;
     padding-top: 100px;
+}
+
+
+a{
+   color: white;
+}
+
+
+a:visited {
+   color: white;
+}
+a:active {
+    color: #fece00;
 }
 
 .navContainer {
@@ -11,11 +24,12 @@ body {
     display: flex;
     flex-flow: row wrap;
     justify-content: flex-start;
+    align-content: stretch;
     padding: 0;
     margin: 0;
     list-style: none;
     text-decoration: none;
-    color: #598234;
+    color: #0375b4;
 }
 
 .navContainer li {
@@ -23,26 +37,90 @@ body {
     display: flex;
     justify-content: center;
     align-items: baseline;
-    height: 50px;
+    background-color: #fece00
+}
+
+.greeting {
+    padding: 20px 10px;
 }
 
 .navContainer a {
     display: inline-block;
     flex: 1;
     text-decoration: none;
-    background-color: #68829E;
+    background-color: #fece00;
     border: 1px solid gray;
     padding: 20px 10px;
     text-align: center;
+    color: #0375b4;
 }
 
 .navContainer a:hover {
-    background-color: white;
+    background-color: #007849;
 }
 
 
 h1, h2, h3, h4 {
-    color: #AEBD38;
+    color: #007849;
+    text-align: center;
+}
+
+button {
+    background-color: #0375b4;
+    padding: 10px 20px;
+    margin: 5px;
+    border-radius: 10px;
+    color: white;
+}
+
+p, label {
+    color: white;
+}
+
+input {
+    margin: 10px;
+}
+
+table {
+    color: white;
+    border-collapse: collapse;
+    border: 2px solid #007849;
+}
+
+th {
+    background-color: #007849;
+}
+
+td {
+    background-color: #0375b4;
+    border-top: 1px solid #007849;
+    border-bottom: 1px solid #007849;
+    color: white;
+}
+
+th, td{
+    padding: 20px;
+}
+
+td:nth-child(even), th:nth-child(even){
+   padding-left: 30px;
+}
+
+td:nth-child(odd), th:nth-child(odd) {
+   padding-right: 30px
+}
+
+.verticalHolder {
+   display: flex;
+   align-items: center;
+   flex-direction: column;
+}
+
+.error {
+   color: red;
+}
+
+.middle {
     text-align: center;
 }
 

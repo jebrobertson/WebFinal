@@ -73,6 +73,19 @@ button {
     color: white;
 }
 
+p {
+   margin: 5px;
+}
+
+img {
+  border: 3px solid white;
+  margin: 7px;
+}
+
+hr {
+    border-top: 2px solid white;
+}
+
 p, label {
     color: white;
 }

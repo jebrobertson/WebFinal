@@ -7,8 +7,9 @@
     <title>Square Dodge Game!</title>
     <link href="css/game.css" rel="stylesheet"/>
     <link href="css/general.css" rel="stylesheet" />
+    <script src="js/SquareDodgeGame.js"></script>
 </head>
-<body>
+<body onload="startGame()">
 <?php
 include 'navbar.php';
 session_start();
@@ -36,7 +37,6 @@ else{
         <button type="button" onclick="pauseGame()" id="pauseStart">Pause</button>
         <button type="button" onclick="resetGame()" id="reset">Reset</button>
     </div>
-    <script src="js/SquareDodgeGame.js"></script>
 <?php
 }
 ?>

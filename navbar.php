@@ -2,10 +2,13 @@
  <nav>
         <ul class="navContainer">
             <?php
-            if(isset($_SESSION['username'])){
+            if(isset($_SESSION['username']))
                 echo '<li class="greeting"> Hello '.$_SESSION['username'].'</li>';
             ?>
             <li><a href="index.php" >Home</a></li>
+            <?php
+            if(isset($_SESSION['username'])){
+            ?>
             <li><a href="game.php">Play</a> </li>
             <li><a href="editProfile.php">Edit Profile</a> </li>
             <?php

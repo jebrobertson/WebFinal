@@ -110,12 +110,12 @@ $("html").keyup(function (e) {
     }
 });
 
-$(function () {
+function startGame() {
     interval = setInterval(drawImage, timeUpdate);
     loadLeaders();
     loadPersonalBest();
     getBallColor();
-});
+}
 
 function gameOver() {
     isDead = true;

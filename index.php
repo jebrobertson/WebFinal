@@ -5,6 +5,7 @@
     <meta charset="utf-8" />
     <title>Square Dodge Game!</title>
     <link href="css/general.css" rel="stylesheet"/>
+    <link href="css/index.css" rel="stylesheet"/>
 </head>
 <body>
 <?php include 'navbar.php'; ?>
@@ -23,12 +24,12 @@
     <h2>I Challenge You!</h2>
     <div class="holder">
        <p>Here is a sample video of the game. It is also the highest on the leaderboard! I challenge you to beat it</p>
-       <iframe width="400" height="300" src="https://www.youtube.com/embed/5p_YjxRMmp8">
+       <iframe width="400" height="300" allowFullScreen="allowFullScreen" frameBorder="0" src="https://www.youtube.com/embed/1IcmTCYdXUk">
        </iframe>
     </div>  
     </div>
     <hr>
-    <h2>Gallary</h2>
+    <h2>Gallery</h2>
     <div class="holder">
         <?php
             for($i = 1;$i <= 5; $i++)
